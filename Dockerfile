@@ -11,7 +11,7 @@ LABEL maintainer="TRW <trw@acoby.de>" \
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONIOENCODING UTF-8
 
-RUN apk add --no-cache --update git yamllint curl && \
+RUN apk add --no-cache --update git yamllint curl openssh openssh-keygen && \
     apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev openssl-dev && \
     adduser -u 5000 -h /home/worker -D worker && \
     /usr/local/bin/python3 -m pip install --upgrade pip && \
