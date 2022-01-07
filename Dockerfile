@@ -15,11 +15,11 @@ RUN apk add --no-cache --update git yamllint curl && \
     apk add --no-cache --virtual .build-deps gcc musl-dev libffi-dev openssl-dev && \
     adduser -u 5000 -h /home/worker -D worker && \
     /usr/local/bin/python3 -m pip install --upgrade pip && \
-    /usr/local/bin/python3 -m pip --no-cache install netaddr passlib requests pywinrm && \
-    /usr/local/bin/python3 -m pip --no-cache install ansible-tower-cli && \
-    /usr/local/bin/python3 -m pip --no-cache install ansible-lint && \
-    /usr/local/bin/python3 -m pip --no-cache install ansible && \
-    /usr/local/bin/python3 -m pip --no-cache install awxkit && \
+    /usr/local/bin/python3 -m pip install netaddr passlib requests pywinrm && \
+    /usr/local/bin/python3 -m pip install ansible && \
+    /usr/local/bin/python3 -m pip install ansible-lint && \
+    /usr/local/bin/python3 -m pip install ansible-tower-cli && \
+    /usr/local/bin/python3 -m pip install awxkit && \
     apk del .build-deps gcc musl-dev libffi-dev openssl-dev
 
 WORKDIR /home/worker
