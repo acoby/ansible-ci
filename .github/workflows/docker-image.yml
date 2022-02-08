@@ -2,16 +2,18 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - "main"
+    tags:
+      - "*"
   schedule:
     - cron: '30 2 * * 1'
 
+env:
+  DOCKERHUB_IMAGE: docker.io/acoby/ansible-ci
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -27,10 +29,17 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3.6.2
+        with:
+          images: ${{ env.DOCKERHUB_IMAGE }}
+
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: trickert76/ansible-ci:latest
+          tags: ${{ steps.meta.outputs.tags }},${{ env.DOCKERHUB_IMAGE }}:latest
+          labels: ${{ steps.meta.outputs.labels }}
