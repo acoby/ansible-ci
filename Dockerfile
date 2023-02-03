@@ -18,6 +18,7 @@ RUN adduser -u 5000 -h /home/worker -D worker && \
     /usr/local/bin/python3 -m pip install netaddr passlib requests pywinrm bcrypt && \
     /usr/local/bin/python3 -m pip install ansible && \
     /usr/local/bin/python3 -m pip install ansible-lint && \
+    /usr/local/bin/python3 -m pip install pytest && \
     apk del .build-deps gcc musl-dev libffi-dev openssl-dev
 
 WORKDIR /home/worker
