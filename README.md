@@ -7,4 +7,4 @@ We install
 - ansible
 - ansible-lint
 - yamllint
-
+- molecule[docker]
