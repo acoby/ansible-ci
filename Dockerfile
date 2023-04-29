@@ -19,7 +19,7 @@ RUN adduser -u 5000 -h /home/worker -D worker && \
     /usr/local/bin/python3 -m pip install ansible && \
     /usr/local/bin/python3 -m pip install ansible-lint && \
     /usr/local/bin/python3 -m pip install pytest && \
-    /usr/local/bin/python3 -m pip install molecule molecule-docker && \
+    /usr/local/bin/python3 -m pip install molecule==4.0.4 molecule[docker]==4.0.4 && \
     apk del .build-deps gcc musl-dev libffi-dev openssl-dev
 
 WORKDIR /home/worker
